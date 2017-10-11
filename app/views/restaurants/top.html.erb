@@ -1,0 +1,18 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-offset-3">
+      <h1>Top Restaurants</h1>
+        <em><p>The best of the best, rated 4.5 stars or higher by our reviewers.</p></em>
+        <br>
+        <ul>
+          <% @restaurants.each do |restaurant| %>
+            <li>
+              <%= link_to restaurant.name, restaurant_path(restaurant) %>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+</div>
+

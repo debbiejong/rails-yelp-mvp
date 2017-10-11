@@ -1,36 +1,44 @@
-<h1 style="margin-left: 70px"><%= @restaurant.name %></h1>
-
 <div class="container">
+<h1><%= @restaurant.name %></h1>
+<br>
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-offset-3">
-      <p>A <%= @restaurant.category.capitalize %> restaurant.</p>
-      <p>Address: <%= @restaurant.address %></p>
+    <div class="col-xs-12 col-sm-6 col-offset-">
+      <p>A <%= @restaurant.category.capitalize %> restaurant in <%= @restaurant.address %>.</p>
+<!--       <p>Address: <%= @restaurant.address %></p> -->
       <p><%= @restaurant.phone_number %></p>
     </div>
   </div>
-</div>
-
-<div class="container">
-  <%= link_to "Add a review", new_restaurant_review_path(@restaurant) %>
-</div>
-
-<h5 style="margin-left: 190px"><strong>Reviews for <%= @restaurant.name %></strong></h5>
-<div class="container">
+  <br>
+  <p><strong>Average rating:</strong>
+    <% sum = 0 %>
+    <% count = 0 %>
+    <% @restaurant.reviews.each do |review| %>
+      <% sum += review.rating %>
+      <% count += 1 %>
+    <% end %>
+    <%= (sum.to_f / count).round(1) %> out of 5.0 stars
+  </p>
+  <br>
+  <h4><strong>Reviews for <%= @restaurant.name %>:</strong></h4>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-offset-3">
       <ol>
         <% @restaurant.reviews.each do |review| %>
           <li>
-            <p>Rating: <%= review.rating %></p>
+            <p><strong>Rating:</strong> <%= review.rating %></p>
             <p><%= review.content %></p>
           </li>
         <% end %>
       </ol>
     </div>
   </div>
+  <br>
+    <%= link_to "Add a review for #{@restaurant.name}", new_restaurant_review_path(@restaurant) %>
+  <br>
+  <br>
+    <%= link_to "View all restaurants", restaurants_path %>
+  <br>
+  <br>
+    <%= link_to "View top restaurants", top_restaurants_path %>
 </div>
-
-
-<div class="container">
-  <%= link_to "Back to all restaurants", restaurants_path %>
-</div>
+<br>

@@ -1,12 +1,30 @@
 class RestaurantsController < ApplicationController
 
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+
   def index
     @restaurants = Restaurant.all
   end
 
   def show
   end
+
+  def top
+    @restaurants = Restaurant.all
+    highly_rated = @restaurants.select do |restaurant|
+      sum = 0
+      count = 0
+      restaurant.reviews.each do |review|
+        sum += review.rating
+        count += 1
+      end
+      (sum.to_f / count) > 4.5
+    end
+    @restaurants = highly_rated
+    # @restaurants = Restaurant.all
+    # redirect_to restaurants_top_restaurants_path
+  end
+
 
   def new
     @restaurant = Restaurant.new

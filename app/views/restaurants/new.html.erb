@@ -1,6 +1,5 @@
-<h1 style="margin-left: 80px">Create a new restaurant</h1>
-
 <div class="container">
+<h1>Add a new restaurant to list</h1>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-offset-3">
       <%= simple_form_for(@restaurant) do |f| %>
@@ -12,4 +11,7 @@
       <% end %>
     </div>
   </div>
+  <br>
+  <%= link_to "Back to all restaurants", restaurants_path %>
 </div>
+<br>

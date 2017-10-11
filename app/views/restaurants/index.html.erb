@@ -1,16 +1,21 @@
-<h1 style="margin-left: 70px">Le Yelp List of Restaurants</h1>
-
 <div class="container">
+<h1>Le Yelp List of Restaurants</h1>
+<br>
+  <div style="display: inline-flex">
+  <div class="flex-item" style="margin-right: 100px">
+    <%= link_to "Add a new restaurant", new_restaurant_path %>
+  </div>
+  <div class="flex-item">
+   <%= link_to "View top restaurants", top_restaurants_path %>
+  </div>
+  </div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-offset-3">
       <% @restaurants.each do |restaurant| %>
         <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
-        <p>A <%= restaurant.category.capitalize %> restaurant.</p>
+        <p><em>A <%= restaurant.category.capitalize %> restaurant.</em></p>
       <% end %>
     </div>
   </div>
-</div>
-
-<div class="container" style="margin: 60px">
-  <%= link_to "Add a new restaurant", new_restaurant_path %>
+  <br>
 </div>
