@@ -1,0 +1,16 @@
+<h1 style="margin-left: 70px">Le Yelp List of Restaurants</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-offset-3">
+      <% @restaurants.each do |restaurant| %>
+        <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+        <p>A <%= restaurant.category %> restaurant.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin: 60px">
+  <%= link_to "Add a new restaurant", new_restaurant_path %>
+</div>
